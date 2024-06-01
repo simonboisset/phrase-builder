@@ -1,24 +1,39 @@
+// type Syntax = "${x}" | "%{x}" | "{{x}}"|string
+// Doesn't work
+// export const createPhraseBuilder = (syntax: Syntax) => {
+//   const [start, end] = syntax.split('x');
+//   return (phrase: string, variables?: Record<string, string | number>) => {
+//     if (!variables) return phrase;
+//     return phrase.replace(new RegExp(`${start}(\\w+)${end}`, 'g'), (_, key) => variables[key]?.toString() || `${start}${key}${end}`);
+//   };
+// };
+
+// Dollar braces syntax: ${variable}
+
 // Replace ${variable} with value
-export const buildPhrase = (phrase: string, variables?: Record<string, string | number>) => {
+export const buildDollarBracePhrase = (phrase: string, variables?: Record<string, string | number>) => {
   if (!variables) return phrase;
   return phrase.replace(/\${(\w+)}/g, (_, key) => variables[key]?.toString() || `\${${key}}`);
 };
 
+// Migration from double braces syntax to percent braces syntax
 // Replace {{variable}} with %{variable}
-export const fixI18nVariables = (data: any) => {
+export const migrateDoubleBraceToPercentBrace = (data: any) => {
   const stringData = JSON.stringify(data);
   const fixedData = stringData.replace(/{{(\w+)}}/g, '%{$1}');
   return JSON.parse(fixedData);
 };
 
+// Percent braces syntax: %{variable}
 // Replace %{variable} with value
-export const buildI18nPhrase = (phrase: string, variables?: Record<string, string | number>) => {
+export const buildPercentBracePhrase = (phrase: string, variables?: Record<string, string | number>) => {
   if (!variables) return phrase;
   return phrase.replace(/%{(\w+)}/g, (_, key) => variables[key]?.toString() || `%{${key}}`);
 };
 
+// Double braces syntax: {{variable}}
 // Replace {{variable}} with value
-export const buildDobbleBracketsI18nPhrase = (phrase: string, variables?: Record<string, string | number>) => {
+export const buildDoubleBracePhrase = (phrase: string, variables?: Record<string, string | number>) => {
   if (!variables) return phrase;
   return phrase.replace(/{{(\w+)}}/g, (_, key) => variables[key]?.toString() || `{{${key}}}`);
 };

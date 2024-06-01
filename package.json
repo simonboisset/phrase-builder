@@ -1,6 +1,6 @@
 {
   "name": "phrase-builder",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Effortlessly construct dynamic text by seamlessly integrating variables into your phrases",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -10,8 +10,7 @@
   "scripts": {
     "build": "rm -rf dist && node build.js && tsc",
     "test:watch": "vitest",
-    "test": "vitest run",
-    "up": "yarn upgrade-interactive --latest"
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -24,18 +23,17 @@
   "author": "Simon Boisset <simon@lezo.dev>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.5.0",
+    "@types/node": "^20.13.0",
     "@types/prettier": "^3.0.0",
-    "esbuild": "^0.19.2",
-    "esbuild-node-externals": "^1.8.0",
-    "prettier": "^3.0.2",
-    "typescript": "^5.1.6",
-    "vitest": "^1.2.1"
+    "esbuild": "^0.21.4",
+    "esbuild-node-externals": "^1.13.1",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "prettier": {
     "singleQuote": true,
     "tabWidth": 2,
     "printWidth": 120
-  },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  }
 }
